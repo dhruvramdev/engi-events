@@ -25,7 +25,7 @@
 
 body {
 	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	color: #5d5c56;
+	color: white;
 	background: #fff;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -165,7 +165,7 @@ a:focus {
 .intro span {
 	display: block;
 	padding: 1em 0;
-	color: #464b4b;
+	color: #ffffff;
 }
 
 
@@ -330,7 +330,7 @@ a:focus {
 	line-height: 0.9;
 	display: block;
 	padding: 0.15em 0 0.35em;
-	color: #5f646c;
+	color: #e0e0e0;
 }
 
 .text figure {
@@ -346,7 +346,7 @@ a:focus {
 	font-style: italic;
 	padding: 1em 1.5em 0;
 	text-align: center;
-	color: #5f646c;
+	color: #eeeeee;
 }
 
 .text section p {
@@ -360,7 +360,7 @@ a:focus {
 	line-height: 1.5;
 	margin: 0.5em 0 1.25em;
 	text-align: left;
-	color: #9d9c95;
+	color: #eeeeee;
 }
 
 .text blockquote {
@@ -369,7 +369,7 @@ a:focus {
 	line-height: 1.5;
 	position: relative;
 	text-align: left;
-	color: #939997;
+	color: #eeeeee;
 }
 
 .text blockquote::before {

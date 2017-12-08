@@ -1,5 +1,7 @@
+var path = require('path');
+
 module.exports={
-  context: __dirname + "/src",
+  context: __dirname + path.sep +  "src",
   entry: "./index",
   output:{
     filename:"app.js",

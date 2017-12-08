@@ -128,19 +128,19 @@ const CanvasMap=(props)=>{
         pointColor:null,
         pointRadius:null,
 
-        pointFutureColor:'#ccc',
+        pointFutureColor:'#777',
         pointPresentColor:null,
         pointPastColor:null,
 
-        fontPastColor:'#666',
+        fontPastColor:'#000',
         fontPresentColor:'#000',
-        fontFutureColor:'#aaa',
+        fontFutureColor:'#000',
       }
     },
     get trailColor(){
       if(typeof this.props !='undefined')
         if(this.props.trailColor!=null) return this.props.trailColor
-      if(this.trailPath==null) return '#ccc'
+      if(this.trailPath==null) return '#000'
       return this.trailPath.getAttribute('stroke')
     },
     get trailWidth(){
@@ -782,8 +782,8 @@ const CanvasMap=(props)=>{
 
       let gradient=this.ctx.createLinearGradient(this.sectionsBounds[0].right,0,this.sectionsBounds[0].right+200,0)
       if(blendWorks){
-        gradient.addColorStop(0,'rgba(185, 217, 151, 1)')
-        gradient.addColorStop(1,"rgba(185, 217, 151, 0)")
+        // gradient.addColorStop(0,'rgba(185, 217, 151, 1)')
+        // gradient.addColorStop(1,"rgba(185, 217, 151, 0)")
       }else{
         gradient.addColorStop(0,'rgba(255, 255, 255, 0.85)')
         gradient.addColorStop(1,"rgba(255, 255, 255, 0)")

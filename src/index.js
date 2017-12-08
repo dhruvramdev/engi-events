@@ -3,7 +3,7 @@ import CanvasMap from './canvas-map'
 
 let map=CanvasMap({
   textContainer:document.querySelector('.text'),
-  mapSrc:'img/download13.svg',
-  trailVisitedColor:'#47DBB4',
-  fontPresentColor:'#5D5C56',
-}).appendTo('.container')
+  mapSrc:'img/map52.svg',
+  trailVisitedColor:'#f00',
+  fontPresentColor:'#f00',
+}).appendTo('.container');
