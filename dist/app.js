@@ -57,8 +57,8 @@
 	var map = (0, _canvasMap2.default)({
 	  textContainer: document.querySelector('.text'),
 	  mapSrc: 'img/map52.svg',
-	  trailVisitedColor: '#f00',
-	  fontPresentColor: '#f00'
+	  trailVisitedColor: '#66fcf1',
+	  fontPresentColor: '#0b0c10'
 	}).appendTo('.container');
 
 /***/ }),
@@ -320,6 +320,7 @@
 	var enumKeys = __webpack_require__(29);
 	var isArray = __webpack_require__(44);
 	var anObject = __webpack_require__(12);
+	var isObject = __webpack_require__(13);
 	var toIObject = __webpack_require__(32);
 	var toPrimitive = __webpack_require__(16);
 	var createDesc = __webpack_require__(17);
@@ -512,14 +513,13 @@
 	  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
 	})), 'JSON', {
 	  stringify: function stringify(it) {
-	    if (it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
 	    var args = [it];
 	    var i = 1;
 	    var replacer, $replacer;
 	    while (arguments.length > i) args.push(arguments[i++]);
-	    replacer = args[1];
-	    if (typeof replacer == 'function') $replacer = replacer;
-	    if ($replacer || !isArray(replacer)) replacer = function (key, value) {
+	    $replacer = replacer = args[1];
+	    if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+	    if (!isArray(replacer)) replacer = function (key, value) {
 	      if ($replacer) value = $replacer.call(this, key, value);
 	      if (!isSymbol(value)) return value;
 	    };
@@ -636,7 +636,7 @@
 /* 9 */
 /***/ (function(module, exports) {
 
-	var core = module.exports = { version: '2.5.1' };
+	var core = module.exports = { version: '2.5.2' };
 	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -3496,7 +3496,7 @@
 	    var start = toAbsoluteIndex(begin, len);
 	    var upTo = toAbsoluteIndex(end, len);
 	    var size = toLength(upTo - start);
-	    var cloned = Array(size);
+	    var cloned = new Array(size);
 	    var i = 0;
 	    for (; i < size; i++) cloned[i] = klass == 'String'
 	      ? this.charAt(start + i)
@@ -4760,8 +4760,8 @@
 	    notify = function () {
 	      process.nextTick(flush);
 	    };
-	  // browsers with MutationObserver
-	  } else if (Observer) {
+	  // browsers with MutationObserver, except iOS Safari - https://github.com/zloirock/core-js/issues/339
+	  } else if (Observer && !(global.navigator && global.navigator.standalone)) {
 	    var toggle = true;
 	    var node = document.createTextNode('');
 	    new Observer(flush).observe(node, { characterData: true }); // eslint-disable-line no-new
@@ -5469,7 +5469,7 @@
 
 	// IEEE754 conversions based on https://github.com/feross/ieee754
 	function packIEEE754(value, mLen, nBytes) {
-	  var buffer = Array(nBytes);
+	  var buffer = new Array(nBytes);
 	  var eLen = nBytes * 8 - mLen - 1;
 	  var eMax = (1 << eLen) - 1;
 	  var eBias = eMax >> 1;
@@ -5587,7 +5587,7 @@
 	  $ArrayBuffer = function ArrayBuffer(length) {
 	    anInstance(this, $ArrayBuffer, ARRAY_BUFFER);
 	    var byteLength = toIndex(length);
-	    this._b = arrayFill.call(Array(byteLength), 0);
+	    this._b = arrayFill.call(new Array(byteLength), 0);
 	    this[$LENGTH] = byteLength;
 	  };
 
@@ -7175,7 +7175,7 @@
 	module.exports = function (COLLECTION) {
 	  $export($export.S, COLLECTION, { of: function of() {
 	    var length = arguments.length;
-	    var A = Array(length);
+	    var A = new Array(length);
 	    while (length--) A[length] = arguments[length];
 	    return new this(A);
 	  } });
@@ -7983,7 +7983,7 @@
 	    });
 	  },
 	  of: function of() {
-	    for (var i = 0, l = arguments.length, items = Array(l); i < l;) items[i] = arguments[i++];
+	    for (var i = 0, l = arguments.length, items = new Array(l); i < l;) items[i] = arguments[i++];
 	    return new (typeof this === 'function' ? this : $Observable)(function (observer) {
 	      var done = false;
 	      microtask(function () {
@@ -9056,15 +9056,15 @@
 	        pointPresentColor: null,
 	        pointPastColor: null,
 
-	        fontPastColor: '#666',
+	        fontPastColor: '#000',
 	        fontPresentColor: '#000',
-	        fontFutureColor: '#aaa'
+	        fontFutureColor: '#000'
 	      };
 	    },
 
 	    get trailColor() {
 	      if (typeof this.props != 'undefined') if (this.props.trailColor != null) return this.props.trailColor;
-	      if (this.trailPath == null) return '#ccc';
+	      if (this.trailPath == null) return '#000';
 	      return this.trailPath.getAttribute('stroke');
 	    },
 	    get trailWidth() {
@@ -9663,8 +9663,8 @@
 
 	      var gradient = this.ctx.createLinearGradient(this.sectionsBounds[0].right, 0, this.sectionsBounds[0].right + 200, 0);
 	      if (blendWorks) {
-	        // gradient.addColorStop(0,'rgba(185, 217, 151, 1)')
-	        // gradient.addColorStop(1,"rgba(185, 217, 151, 0)")
+	        gradient.addColorStop(0, 'rgba(0, 92, 151, 0.3)');
+	        gradient.addColorStop(1, "rgba(54, 55, 149, 0)");
 	      } else {
 	        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.85)');
 	        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
