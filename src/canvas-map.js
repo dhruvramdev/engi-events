@@ -9,7 +9,16 @@ import TweenLite from 'gsap'
 import hasClass from './has-class'
 
 let arrayNum=v=>Array.from(Array(v))
-let getScroll=()=>window.pageYOffset
+let getScroll=()=>{
+
+  // return 700;
+  return window.pageYOffset ;
+  // console.log(window.variabley);
+  // return parseInt(window.variabley) ;
+  
+  // console.log(document.getElementById('fullpage').style.transform)  
+  // return parseInt( document.getElementById('fullpage').style.transform.split('-')[1].split('px')[0] ) ;
+}
 let setCompositeOperation=(ctx, mode='source-over', fallback=null) => {
   ctx.globalCompositeOperation = mode
   let worked=(ctx.globalCompositeOperation == mode)

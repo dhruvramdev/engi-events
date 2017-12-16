@@ -8936,14 +8936,7 @@
 	  return Array.from(Array(v));
 	};
 	var getScroll = function getScroll() {
-
-	  // return 700;
 	  return window.pageYOffset;
-	  // console.log(window.variabley);
-	  // return parseInt(window.variabley) ;
-
-	  // console.log(document.getElementById('fullpage').style.transform)  
-	  // return parseInt( document.getElementById('fullpage').style.transform.split('-')[1].split('px')[0] ) ;
 	};
 	var setCompositeOperation = function setCompositeOperation(ctx) {
 	  var mode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'source-over';
