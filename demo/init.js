@@ -3,10 +3,10 @@ $(document).ready(function () {
         //Navigation
         menu: '#menu',
         lockAnchors: false,
-        anchors: ['art', 'music'],
+        anchors: ['art', 'music','dance','drama','literary','proshows','fashion','miscallneous','informal'],
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['Art', 'Music'],
+        navigationTooltips: ['Art', 'Music','Dance','Drama'],
         showActiveTooltip: true,
         slidesNavigation: false,
         slidesNavPosition: 'bottom',
